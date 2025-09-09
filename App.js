@@ -13,25 +13,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import 'react-native-gesture-handler';
 import DetailsScreen from './DetailsScreen';
 import Cart from './Cart';
+import CustomDrawer from './Custom_drawer';
 
-function LogoutScreen({ navigation }) {
-  React.useEffect(() => {
-    Alert.alert(
-      "Logout",
-      "Are you sure you want to exit the app?",
-      [
-        { text: "Cancel", onPress: () => navigation.navigate("Home") },
-        { text: "Yes", onPress: () => BackHandler.exitApp() }
-      ]
-    );
-  }, []);
-
-  return (
-    <View style={styles.screen}>
-      <Text style={styles.text}>Logging out...</Text>
-    </View>
-  );
-}
 
 const HomeStack=createStackNavigator();
 function Home(){
@@ -49,7 +32,7 @@ const Drawer = createDrawerNavigator();
   return (
   
   <NavigationContainer>
-    <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Navigator initialRouteName="Home" drawerContent={(props)=><CustomDrawer {...props}/>}>  
       <Drawer.Screen 
         name="Home" 
         component={Home} 
@@ -76,6 +59,9 @@ const Drawer = createDrawerNavigator();
           drawerIcon: ({ color, size }) => (
             <Icon name="calendar" size={size} color={color} />
           ),
+          drawerLabelStyle:({})=>(
+            <View></View>
+          )
         }}
       />
       <Drawer.Screen 
@@ -110,19 +96,11 @@ const Drawer = createDrawerNavigator();
         component={Cart} 
         options={{
           drawerIcon: ({ color, size }) => (
-            <Icon name="cart" size={size} color={color} />
+            <Icon name="notifications" size={size} color={color} />
           ),
         }}
       />
-      <Drawer.Screen 
-        name="Logout" 
-        component={LogoutScreen} 
-        options={{
-          drawerIcon: ({ color, size }) => (
-            <Icon name="log-out" size={size} color={color} />
-          ),
-        }}
-      />
+   
     </Drawer.Navigator>
   </NavigationContainer>
   
@@ -136,15 +114,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 22,
-    fontWeight: "600",
-  },
+  
+ 
   Header:{
     flexDirection:"column"
   }

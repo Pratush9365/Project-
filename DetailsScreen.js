@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingBottom: 10,
     paddingTop: 40,
-    // paddingHorizontal: 20,
+  
   },
 
 
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
   },
   image: {
     backgroundColor: "#2A7BBB",
-    //  marginHorizontal:8,
+    
     borderRadius: 10,
   },
   section: {
@@ -317,15 +317,16 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#152D40",
     marginBottom: 16,
-    rowGap: 22,
+    rowGap: 18,
     fontFamily:"Montserrat2"
   },
 
   row: {
-    flexDirection: "row",
-    alignItems: "center",
-    width: "49%",
-    marginBottom: 16,
+    flexDirection: "row",    
+   alignItems: "center",
+    width:"40%",
+    marginBottom:16,
+    paddingHorizontal:2
   },
   Check: {
     width: 24,
