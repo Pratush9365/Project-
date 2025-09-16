@@ -121,7 +121,10 @@ const styles = StyleSheet.create({
     marginTop:24,
     marginLeft:20
 },conditionsText:{
-    marginLeft:12
+    marginLeft:12,
+    fontFamily:"Regular",
+    fontSize:14,
+    fontWeight:"400"
 },conditions1:{
     flexDirection:"row",
     marginTop:17,

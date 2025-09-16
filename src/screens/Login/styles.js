@@ -43,12 +43,13 @@ const styles = StyleSheet.create({
     marginLeft:18
   },
   title: { 
+    fontFamily:"Bold",
      marginBottom:8,
     color:colors.white,
     fontSize: 24, 
     fontWeight: "700", 
      textAlign: "left",
-    fontFamily:"Bold",
+    
 
     marginLeft:20
   },Texts1:{

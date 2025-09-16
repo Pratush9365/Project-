@@ -1,16 +1,13 @@
-import React, { useRef, useState } from "react";
-import {View,Text,Image,Pressable,FlatList,} from "react-native";
+import React, { useRef, useState, useEffect } from "react";
+import { View, Text, Image, Pressable, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage"; 
 import Images from "../../assets/images";
 import UseAppFonts from "../../assets/fonts";
 import styles from "./styles";
 import icons from "../../assets/icons";
- import { Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 const { width } = Dimensions.get("window");
-
-
-
-
 
 const slides = [
   {
@@ -36,66 +33,61 @@ const slides = [
   },
 ];
 
-
-
-
-
-
 export default function Onboarding() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const navigation= useNavigation();
+  const navigation = useNavigation();
   const flatListRef = useRef(null);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (currentIndex < slides.length - 1) {
       flatListRef.current.scrollToIndex({ index: currentIndex + 1 });
     } else {
-     navigation.replace('Login')
+      await AsyncStorage.setItem("hasSeenOnboarding", "true"); 
+      navigation.replace("Login");
     }
   };
- 
 
-const handleMomentumEnd = (e) => {
-  const offsetX = e.nativeEvent.contentOffset.x;
-  const index = Math.floor(offsetX / width + 0.5); 
-  setCurrentIndex(index);
-};
+  const handleSkip = async () => {
+    await AsyncStorage.setItem("hasSeenOnboarding", "true");
+    navigation.replace("Login");
+  };
 
+  const handleMomentumEnd = (e) => {
+    const offsetX = e.nativeEvent.contentOffset.x;
+    const index = Math.floor(offsetX / width + 0.5);
+    setCurrentIndex(index);
+  };
 
-   const fontsLoaded=UseAppFonts();
+  const fontsLoaded = UseAppFonts();
+  if (!fontsLoaded) return null;
 
-  if (!fontsLoaded) {
-  return null; 
-}
   const renderItem = ({ item }) => (
     <View style={styles.slide}>
-      
       <Image source={item.image} style={styles.image} resizeMode="contain" />
-     
       <View style={styles.footer}>
         <View style={styles.foortcontent}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
-      <Pressable style={styles.nextButton} onPress={handleNext}>
-        <Image style={styles.nextText} source={icons.ArrowIconRight}/>
-      </Pressable>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.description}>{item.description}</Text>
+          <Pressable style={styles.nextButton} onPress={handleNext}>
+            <Image style={styles.nextText} source={icons.ArrowIconRight} />
+          </Pressable>
+        </View>
       </View>
-
-      </View>
-      </View>
-
+    </View>
   );
 
   return (
     <View style={styles.container}>
-       <Pressable style={styles.skipButton} onPress={()=>navigation.navigate('Login')} hitSlop={{top:22,bottom:22,right:22,left:22}} >
+      <Pressable
+        style={styles.skipButton}
+        onPress={handleSkip}
+        hitSlop={{ top: 22, bottom: 22, right: 22, left: 22 }}
+      >
         <View style={styles.SkipTextbackground}>
-     
-        <Text style={styles.skipText}>Skip</Text>
-      
-      </View>
+          <Text style={styles.skipText}>Skip</Text>
+        </View>
       </Pressable>
-    
+
       <FlatList
         data={slides}
         renderItem={renderItem}
@@ -104,10 +96,8 @@ const handleMomentumEnd = (e) => {
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         ref={flatListRef}
-        onMomentumScrollEnd={handleMomentumEnd}     
+        onMomentumScrollEnd={handleMomentumEnd}
       />
     </View>
-    
   );
 }
-

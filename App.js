@@ -1,7 +1,7 @@
-import Rootnavigation from "./Src/navigator/rootNavigation";
+import Rootnavigation from "./src/navigator/rootNavigation";
 import Toast from 'react-native-toast-message';
-import toastConfig from "./Src/screens/Login/toastMessage";
-import UseAppFonts from "./Src/assets/fonts";
+import toastConfig from "./src/screens/Login/toastMessage";
+import UseAppFonts from "./src/assets/fonts";
 
 
 export default function App() {

@@ -4,11 +4,11 @@
     "slug": "E-commerceApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./Src/assets/images/image 1.png",
+    "icon": "./src/assets/images/image 1.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./Src/assets/images/Splash_Screen.png",
+      "image": "./src/assets/images/Splash_Screen.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./Src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true

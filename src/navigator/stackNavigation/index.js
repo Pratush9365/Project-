@@ -9,7 +9,8 @@ import Images from "../../assets/images";
 import Onboarding from "../../screens/tutorials";
 import LoginScreen from "../../screens/Login";
 import ForgotPassword from "../../screens/forgotPassword";
-import ResetPassword from "../../screens/resetPassword"
+import ResetPassword from "../../screens/resetPassword";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createStackNavigator();
 
 function SplashScreen() {
@@ -18,14 +19,18 @@ function SplashScreen() {
 
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: "Onboarding" }],
-      });
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [navigation]);
+  const checkOnboarding = async () => {
+    const hasSeenOnboarding = await AsyncStorage.getItem("hasSeenOnboarding");
+    if (hasSeenOnboarding) {
+      navigation.replace("Login"); 
+    } else {
+      navigation.replace("Onboarding"); 
+    }
+  };
+
+  const timer = setTimeout(checkOnboarding, 3000);
+  return () => clearTimeout(timer);
+}, [navigation]);
 
   return (
     <View style={styles.SplashContainer}>
@@ -41,7 +46,7 @@ function SplashScreen() {
 
 export default function StackNavigation() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator   screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
        <Stack.Screen name="Onboarding" component={Onboarding} /> 
        <Stack.Screen name="Login" component={LoginScreen}/>
