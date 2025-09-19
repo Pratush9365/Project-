@@ -12,12 +12,15 @@ const styles = StyleSheet.create({
     flex:0.35,
     backgroundColor:colors.MediumBlue
 
-  },backgroundImage:{
+  },
+  backgroundImage:{
     width: 442.53, 
   height: 385.53,
   resizeMode: "cover",
   alignSelf: "center",
-  },ToastsStyle:{
+  },
+  
+  ToastsStyle:{
     backgroundColor:colors.red,
     color:colors.white
 
@@ -28,13 +31,10 @@ const styles = StyleSheet.create({
   },
   
   containerItem1:{
-    flexDirection:"column",
-    justifyContent:"space-between",
-    alignItems:"flex-start",
-    position:"absolute",
-    bottom:12,
-    left:15, 
-   
+   justifyContent:"flex-end",
+  marginTop:121,
+  marginLeft:18
+  
 
   },ImageStyle:{
     width:68,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
      marginBottom:8,
     color:colors.white,
     fontSize: 24, 
-    fontWeight: "700", 
+    // fontWeight: "700", 
      textAlign: "left",
     
 
@@ -77,14 +77,18 @@ const styles = StyleSheet.create({
    
    input1:{
     flexDirection:"row",
-   borderRadius:12,
-   borderWidth:1,
-   padding:12.5,
-   gap:8,
-   borderColor:colors.paleBlue,
-   justifyContent:"space-between",
-   alignItems:"center",
-   zIndex:10
+    alignItems:"center",
+    justifyContent:"space-between",
+    backgroundColor:colors.white,
+    paddingTop:20,
+    paddingBottom:20,
+    paddingLeft:20,
+    paddingRight:50,
+    borderRadius:12,
+    borderWidth:1,
+    borderColor:colors.black152D4012
+
+
         
    },
   forgot: { 
@@ -148,7 +152,7 @@ const styles = StyleSheet.create({
     height:20,
     position:"absolute",
     right:12,
-    bottom:18
+    bottom:18,
   },
   errorText: {
   color: "red",

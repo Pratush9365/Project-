@@ -20,7 +20,14 @@ const styles = StyleSheet.create({
     borderTopLeftRadius:20,
     borderTopRightRadius:20
 
-},modalContainer:{
+},btnopacity:{
+    opacity:1
+
+},btnopacity1:{
+opacity:0.5
+},
+
+modalContainer:{
     justifyContent:"center",
     alignItems:"center",
     width:56,
@@ -74,7 +81,7 @@ const styles = StyleSheet.create({
 title: { 
     marginTop:64,
     fontSize: 24,
-    fontWeight: "700",
+    // fontWeight: "700",
     fontFamily:"Bold",
     marginBottom: 10 },
   subtitle: { 
@@ -93,7 +100,7 @@ title: {
     backgroundColor:colors.white,
     justifyContent:"center",
     alignItems:"center",
-    marginTop:79,
+    marginTop:60
    },imageSize:{
     width:24,
     height:24

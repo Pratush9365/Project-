@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, BackHandler } from 'react-native';
+import {  View, Image, Text, TouchableOpacity, Alert, BackHandler } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import Images from '../../assets/images';
 import icons from '../../assets/icons';
 import styles from './styles';
+
 
 const CustomDrawer = () => {
   const navigation = useNavigation();
@@ -72,6 +73,16 @@ const CustomDrawer = () => {
             <View style={styles.ImagesBackground}>
               <Image source={icons.Notifiactions} style={styles.icon}/>
             </View>
+            <Text style={styles.sectionText}>cart</Text>
+            <Image source={icons.TextIcon} style={styles.arrow}/>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
+          <View style={styles.Secton}>
+            <View style={styles.ImagesBackground}>
+              <Image source={icons.Notifiactions} style={styles.icon}/>
+            </View>
             <Text style={styles.sectionText}>Notifications</Text>
             <Image source={icons.TextIcon} style={styles.arrow}/>
           </View>
@@ -79,10 +90,10 @@ const CustomDrawer = () => {
 
         <TouchableOpacity onPress={() => Alert.alert(
           "Logout",
-          "Are you sure you want to exit the app?",
+          "Are you sure you want logout?",
           [
             { text: "Cancel", onPress: () => navigation.navigate('HomeStack') },
-            { text: "Yes", onPress: () => BackHandler.exitApp() }
+            { text: "Yes", onPress: () => navigation.navigate('HomeStack',{screen:'Login'}) }
           ]
         )}>
           <View style={styles.Secton}>

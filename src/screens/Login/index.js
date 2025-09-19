@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {View,Text,TextInput,TouchableOpacity, Alert,Image} from "react-native";
+import {View,Text,TextInput,TouchableOpacity, Alert,Image,ImageBackground} from "react-native";
 import Images from "../../assets/images";
 import icons from "../../assets/icons";
 import UseAppFonts from "../../assets/fonts";
@@ -7,7 +7,6 @@ import styles from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
 import { userdata } from "./utils/staticData";
-import { ScrollView } from "react-native-gesture-handler";
 
 
 
@@ -63,7 +62,7 @@ export default function LoginScreen({ navigation }) {
     Alert.alert('Loggin SuccessFull')
     
    
-    navigation.replace("Home");
+    navigation.navigate("Home");
   };
 
   
@@ -74,22 +73,20 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-    
-
-    
-      
-      <View style={styles.containerItem}>
-         <Image source={Images.HeaderImage} style={styles.backgroundImage}/>
-        <View style={styles.containerItem1}>
-         
+     <View style={styles.containerItem}>
+        
+         <ImageBackground source={Images.HeaderImage} style={styles.backgroundImage}>
+         <View style={styles.containerItem1}>
+       
          <Image source={Images.SplashImage} style={styles.ImageStyle}/>
         <Text style={styles.title}>Welcome!</Text>
         <Text style={styles.Texts1}> Enter your credentials to access your account</Text>
-   
+      
+        </View>
+   </ImageBackground>
     
       </View>
       
-      </View>
       
      <View style={styles.emailHeader}>
       <Text style={styles.Texts}>Email Address </Text> 
@@ -112,16 +109,18 @@ export default function LoginScreen({ navigation }) {
     
   
       <Text style={styles.Texts}>Password</Text>
-      
+     
       <TextInput
         placeholder="Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry={!showPassword}
          style={styles.input}
-      /><TouchableOpacity onPress={()=>setShowPassword(!showPassword)}>
+      /><TouchableOpacity onPress={()=>setShowPassword(!showPassword)} hitSlop={{top:22,right:22,bottom:22,left:22}}>
       <Image source={icons.passwordSeen} style={styles.passwordicon}/>
+      
       </TouchableOpacity>
+    
       
      
     

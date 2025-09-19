@@ -1,6 +1,5 @@
-import React, { use, useState } from "react";
-import {View,Text,TextInput,TouchableOpacity,StyleSheet,Alert,Image, Pressable} from "react-native";
-import colors from "../../utils/colors";
+import React, { useEffect, useState } from "react";
+import {View,Text,TextInput,TouchableOpacity,Alert,Image, Pressable} from "react-native";
 import { userdata } from "../Login/utils/staticData";
 import Images from "../../assets/images";
 import icons from "../../assets/icons";
@@ -12,6 +11,7 @@ import styles from "./styles";
 export default function ForgotPassword({ navigation }) {
   const [email, setEmail] = useState("");
   const [Modalvisible,SetModalVisible]=useState(false);
+  const [buttonDisabled,setButtonDisabled]=useState(false);
 
   const validateEmail = (text) => {
     const regex = /\S+@\S+\.\S+/;
@@ -24,6 +24,7 @@ export default function ForgotPassword({ navigation }) {
       return;
     } const foundUser=userdata.find((item)=>
     item.email===email)
+    setButtonDisabled(true)
     if(foundUser){
       SetModalVisible(true)
      
@@ -31,6 +32,7 @@ export default function ForgotPassword({ navigation }) {
     }
    else{
  Alert.alert('This User is not in the List')
+ 
     
    }
   };
@@ -39,12 +41,15 @@ export default function ForgotPassword({ navigation }) {
     return null;
   }
   
+   
+  const isFormValid =validateEmail(email)
+  
 
   return (
     <View style={styles.container}>
     
       <View style={styles.container1}>
-      <Pressable onPress={()=>navigation.navigate('Login')}>
+      <Pressable onPress={()=>navigation.goBack()}>
      <View style={styles.backicon}>
       <Image source={icons.backIcon} style={styles.imageSize}/>
       </View>
@@ -65,7 +70,7 @@ export default function ForgotPassword({ navigation }) {
       />
        
        
-      <TouchableOpacity style={styles.verifyBtn} onPress={handleVerify}>
+      <TouchableOpacity style={[styles.verifyBtn,isFormValid&&!buttonDisabled?styles.btnopacity:styles.btnopacity1]} onPress={handleVerify}>
         <Text style={styles.verifyText}>Verify</Text>
       </TouchableOpacity>
         <Modal 
@@ -89,7 +94,7 @@ export default function ForgotPassword({ navigation }) {
             <Text style={styles.emailText}> {email} </Text>
             </Text>
             </View>
-            <TouchableOpacity onPress={()=>navigation.navigate("Reset")} 
+            <TouchableOpacity onPress={()=>navigation.navigate('Reset')} 
             style={styles.loginbtn}>
               <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>

@@ -13,10 +13,14 @@ const styles = StyleSheet.create({
      marginBottom: 10,
     color:colors.Blue_green
     
-    },iconstyle:{width:20,
-        height:20,
-        position:"absolute",
-        right:18
+    },iconstyle:{
+      zIndex:20
+    },btnVisible:{
+      opacity:1
+
+    },btnNotVisible:{
+      opacity:0.5
+
     },
     
         textStyle:{
@@ -32,11 +36,11 @@ const styles = StyleSheet.create({
     iconSize:{
         width:20,
         height:20,
+          position:"absolute",
+          right:38,
+          bottom:19,
+          
        
-    },iconStyle2:{
-      position:"absolute",
-      right:18
-
     },
     
     
@@ -56,20 +60,20 @@ const styles = StyleSheet.create({
         marginLeft:20,
         },
      
-  input: {
-    marginHorizontal:20,
-    flexDirection:"row",
-    justifyContent:"space-between",
-    alignItems:"center",
-   backgroundColor:colors.white
-   ,paddingTop:12,
-   paddingBottom:12,
-   paddingRight:50,
-   paddingLeft:20,
-   borderRadius:12,
-   borderWidth:1,
-   borderColor:colors.black152D4012
-  },
+  // input: {
+  //   marginHorizontal:20,
+  //   flexDirection:"row",
+  //   justifyContent:"space-between",
+  //   alignItems:"center",
+  //  backgroundColor:colors.white
+  //  ,paddingTop:12,
+  //  paddingBottom:12,
+  //  paddingRight:50,
+  //  paddingLeft:20,
+  //  borderRadius:12,
+  //  borderWidth:1,
+  //  borderColor:colors.black152D4012
+  // },
   updateBtn: {
     justifyContent:"center",
     alignItems: "center",
@@ -115,7 +119,15 @@ const styles = StyleSheet.create({
     }, inputText: {
     fontFamily:"Regular",
     fontWeight:"400",
-    fontSize:16
+    fontSize:16,
+    paddingTop:20,
+    paddingBottom:20,
+    paddingLeft:20,
+    paddingRight:50,
+    backgroundColor:colors.white,
+    borderRadius:12,
+    borderColor:colors.black152D4012,
+    marginHorizontal:20
 },conditions:{
     flexDirection:"row",
     marginTop:24,
